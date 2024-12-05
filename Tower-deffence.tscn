@@ -1,0 +1,88 @@
+[gd_scene load_steps=5 format=3 uid="uid://c6f1ty5tn67jo"]
+
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_hbyiq"]
+[ext_resource type="Script" path="res://PathFollow2d.cs" id="2_r8a5i"]
+
+[sub_resource type="Curve2D" id="Curve2D_wpfvu"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 192, 167, 0, 0, 0, 0, 908, 171, 0, 0, 0, 0, 909, 260, -2.24746, 0.749154, 2.24746, -0.749154, 674, 261, 0, 0, 0, 0, 676, 405, 0, 0, 0, 0, 908, 406, 0, 0, 0, 0, 909, 522, 0, 0, 0, 0, 191, 523)
+}
+point_count = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cp6kh"]
+size = Vector2(64, 64)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="player" type="Node2D" parent="."]
+
+[node name="Rectangle" type="Node2D" parent="player"]
+position = Vector2(511.477, 334.523)
+script = ExtResource("1_hbyiq")
+size = Vector2(70.9818, 70.9818)
+fill_color = Color(0, 0.7, 1, 1)
+
+[node name="Node2D" type="Node2D" parent="player/Rectangle"]
+position = Vector2(0.52301, 0.47699)
+
+[node name="Rectangle" type="Node2D" parent="player/Rectangle/Node2D"]
+position = Vector2(-0.712158, -19.0768)
+script = ExtResource("1_hbyiq")
+size = Vector2(21.1725, 67.3274)
+fill_color = Color(0.18, 0.1386, 0.1386, 1)
+
+[node name="Enemy-path" type="Node2D" parent="."]
+
+[node name="Rectangle" type="Node2D" parent="Enemy-path"]
+position = Vector2(546.989, 167)
+script = ExtResource("1_hbyiq")
+size = Vector2(778.487, 72.799)
+
+[node name="Rectangle2" type="Node2D" parent="Enemy-path/Rectangle"]
+position = Vector2(361.011, 48.0203)
+script = ExtResource("1_hbyiq")
+size = Vector2(72.799, 169.411)
+
+[node name="Rectangle3" type="Node2D" parent="Enemy-path/Rectangle"]
+position = Vector2(8.01099, 353)
+script = ExtResource("1_hbyiq")
+size = Vector2(778.487, 72.799)
+
+[node name="Rectangle4" type="Node2D" parent="Enemy-path/Rectangle"]
+position = Vector2(361.011, 287)
+script = ExtResource("1_hbyiq")
+size = Vector2(72.799, 169.411)
+
+[node name="Rectangle6" type="Node2D" parent="Enemy-path/Rectangle"]
+position = Vector2(128.011, 170)
+script = ExtResource("1_hbyiq")
+size = Vector2(72.799, 169.411)
+
+[node name="Rectangle" type="Node2D" parent="Enemy-path/Rectangle"]
+position = Vector2(227.011, 238)
+script = ExtResource("1_hbyiq")
+size = Vector2(270, 72.799)
+
+[node name="Rectangle5" type="Node2D" parent="Enemy-path/Rectangle"]
+position = Vector2(227.011, 94)
+script = ExtResource("1_hbyiq")
+size = Vector2(270, 72.799)
+
+[node name="Path2D" type="Path2D" parent="Enemy-path"]
+curve = SubResource("Curve2D_wpfvu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Enemy-path/Path2D"]
+position = Vector2(192, 167)
+rotation = 0.00558653
+script = ExtResource("2_r8a5i")
+
+[node name="Area2D" type="Area2D" parent="Enemy-path/Path2D/PathFollow2D"]
+
+[node name="Rectangle" type="Node2D" parent="Enemy-path/Path2D/PathFollow2D/Area2D"]
+script = ExtResource("1_hbyiq")
+size = Vector2(64.6824, 64.6824)
+fill_color = Color(1, 0, 0.0166664, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy-path/Path2D/PathFollow2D/Area2D"]
+position = Vector2(0.00558651, 0.999984)
+shape = SubResource("RectangleShape2D_cp6kh")
