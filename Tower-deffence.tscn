@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6f1ty5tn67jo"]
+[gd_scene load_steps=6 format=3 uid="uid://c6f1ty5tn67jo"]
 
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_hbyiq"]
-[ext_resource type="Script" path="res://PathFollow2d.cs" id="2_r8a5i"]
+[ext_resource type="Script" path="res://scripts/Gun.cs" id="2_gcxa7"]
+[ext_resource type="Script" path="res://scripts/PathFollow2d.cs" id="2_r8a5i"]
 
 [sub_resource type="Curve2D" id="Curve2D_wpfvu"]
 _data = {
@@ -23,10 +24,12 @@ size = Vector2(70.9818, 70.9818)
 fill_color = Color(0, 0.7, 1, 1)
 
 [node name="Node2D" type="Node2D" parent="player/Rectangle"]
-position = Vector2(0.52301, 0.47699)
+position = Vector2(-0.47699, 0.47699)
+script = ExtResource("2_gcxa7")
 
 [node name="Rectangle" type="Node2D" parent="player/Rectangle/Node2D"]
-position = Vector2(-0.712158, -19.0768)
+position = Vector2(24, 0)
+rotation = 1.5708
 script = ExtResource("1_hbyiq")
 size = Vector2(21.1725, 67.3274)
 fill_color = Color(0.18, 0.1386, 0.1386, 1)
@@ -76,13 +79,13 @@ position = Vector2(192, 167)
 rotation = 0.00558653
 script = ExtResource("2_r8a5i")
 
-[node name="Area2D" type="Area2D" parent="Enemy-path/Path2D/PathFollow2D"]
+[node name="Enemy" type="Area2D" parent="Enemy-path/Path2D/PathFollow2D"]
 
-[node name="Rectangle" type="Node2D" parent="Enemy-path/Path2D/PathFollow2D/Area2D"]
+[node name="Rectangle" type="Node2D" parent="Enemy-path/Path2D/PathFollow2D/Enemy"]
 script = ExtResource("1_hbyiq")
 size = Vector2(64.6824, 64.6824)
 fill_color = Color(1, 0, 0.0166664, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy-path/Path2D/PathFollow2D/Area2D"]
-position = Vector2(0.00558651, 0.999984)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy-path/Path2D/PathFollow2D/Enemy"]
+position = Vector2(4.65661e-09, -3.57628e-07)
 shape = SubResource("RectangleShape2D_cp6kh")
