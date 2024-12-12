@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6f1ty5tn67jo"]
+[gd_scene load_steps=13 format=3 uid="uid://c6f1ty5tn67jo"]
 
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_hbyiq"]
 [ext_resource type="Script" path="res://scripts/Gun.cs" id="2_gcxa7"]
 [ext_resource type="Script" path="res://scripts/PathFollow2d.cs" id="2_r8a5i"]
+[ext_resource type="Script" path="res://scripts/Enemies.cs" id="3_8jdc4"]
 [ext_resource type="PackedScene" uid="uid://chxv1bn5taalx" path="res://prefabs/enemy.tscn" id="3_qc7uv"]
 [ext_resource type="Script" path="res://scripts/Bullet_spawn.cs" id="4_jkpx4"]
 [ext_resource type="Texture2D" uid="uid://b4a65yj8cd164" path="res://Assets/castle_4.png" id="5_14t5e"]
 [ext_resource type="PackedScene" uid="uid://xj7b4obje6ke" path="res://prefabs/bullet.tscn" id="5_ewfxm"]
+[ext_resource type="Script" path="res://scripts/DamageArea2d.cs" id="5_ob5wx"]
 [ext_resource type="Texture2D" uid="uid://yufdwjjmcov8" path="res://Assets/Zfe0sd.png" id="6_qsxx0"]
 
 [sub_resource type="Curve2D" id="Curve2D_wpfvu"]
@@ -14,6 +16,9 @@ _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 192, 167, 0, 0, 0, 0, 908, 171, 0, 0, 0, 0, 909, 260, -2.24746, 0.749154, 2.24746, -0.749154, 674, 261, 0, 0, 0, 0, 676, 405, 0, 0, 0, 0, 908, 406, 0, 0, 0, 0, 909, 522, 0, 0, 0, 0, 191, 523)
 }
 point_count = 8
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ja67l"]
+size = Vector2(20, 70)
 
 [node name="Node2D" type="Node2D"]
 
@@ -79,8 +84,24 @@ loop = false
 script = ExtResource("2_r8a5i")
 
 [node name="Enemies" type="Node2D" parent="Enemy-path/Path2D/PathFollow2D"]
+script = ExtResource("3_8jdc4")
 
-[node name="Enemy" parent="Enemy-path/Path2D/PathFollow2D/Enemies" instance=ExtResource("3_qc7uv")]
+[node name="Enemy" parent="Enemy-path/Path2D/PathFollow2D" instance=ExtResource("3_qc7uv")]
+
+[node name="DamageArea2D" type="Area2D" parent="." node_paths=PackedStringArray("BaseHp_label")]
+position = Vector2(183, 520)
+script = ExtResource("5_ob5wx")
+BaseHp_label = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2D"]
+shape = SubResource("RectangleShape2D_ja67l")
+
+[node name="Label" type="Label" parent="DamageArea2D"]
+offset_left = 886.0
+offset_top = -514.0
+offset_right = 940.0
+offset_bottom = -491.0
+text = "HP:100"
 
 [node name="player" type="Node2D" parent="."]
 
