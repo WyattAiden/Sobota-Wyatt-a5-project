@@ -35,4 +35,5 @@ public partial class Bullet_spawn : Node2D
             Time_till_shoot += (float)delta;
         }
     }
+
 }
