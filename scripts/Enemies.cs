@@ -3,20 +3,22 @@ using System;
 
 public partial class Enemies : Node2D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+	[Export] Label gameover;
+    float time = 0.0f;
+	RandomNumberGenerator rng = new RandomNumberGenerator();
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
 	{
-		if (Input.IsActionPressed("spawn enemy"))
+
+		if (time > rng.RandfRange(3, 12))
 		{
 
-			PackedScene packedScene = ResourceLoader.Load<PackedScene>("res://prefabs/enemy.tscn");
+			PackedScene packedScene = ResourceLoader.Load<PackedScene>("res://prefabs/spawn.tscn");
 			var Enemy = packedScene.Instantiate();
 			AddChild(Enemy);
+            time = 0.0f;
 		}
+        time += (float)delta;
     }
 }

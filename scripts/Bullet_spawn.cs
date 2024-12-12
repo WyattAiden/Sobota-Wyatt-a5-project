@@ -20,13 +20,13 @@ public partial class Bullet_spawn : Node2D
     {
         if (Input.IsActionJustPressed("fire_gun")&& Time_till_shoot > Fire_rate)
         {
-           RigidBody2D bullet = bullet_scene.Instantiate<RigidBody2D>();
+           RigidBody2D bullet = bullet_scene.Instantiate<RigidBody2D>();//tells it what to spawn
 
-            bullet.Rotation = GlobalRotation;
-            bullet.GlobalPosition = GlobalPosition;
-            bullet.LinearVelocity = bullet.Transform.X * bullet_speed;
+            bullet.Rotation = GlobalRotation;//tells the node what way the bullet should be facing when it spawns 
+            bullet.GlobalPosition = GlobalPosition;//tells the node where to spawn the bullet
+            bullet.LinearVelocity = bullet.Transform.X * bullet_speed;//tells the node how fast the bullet should be moving when it spawns
 
-            GetTree().Root.AddChild(bullet);
+            GetTree().Root.AddChild(bullet);//spawns the bullet
 
             Time_till_shoot = 0f;
         }

@@ -1,10 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://c6f1ty5tn67jo"]
 
 [ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_hbyiq"]
+[ext_resource type="PackedScene" uid="uid://cdgrje5a38oaa" path="res://prefabs/spawn.tscn" id="2_b3vcl"]
 [ext_resource type="Script" path="res://scripts/Gun.cs" id="2_gcxa7"]
-[ext_resource type="Script" path="res://scripts/PathFollow2d.cs" id="2_r8a5i"]
 [ext_resource type="Script" path="res://scripts/Enemies.cs" id="3_8jdc4"]
-[ext_resource type="PackedScene" uid="uid://chxv1bn5taalx" path="res://prefabs/enemy.tscn" id="3_qc7uv"]
 [ext_resource type="Script" path="res://scripts/Bullet_spawn.cs" id="4_jkpx4"]
 [ext_resource type="Texture2D" uid="uid://b4a65yj8cd164" path="res://Assets/castle_4.png" id="5_14t5e"]
 [ext_resource type="PackedScene" uid="uid://xj7b4obje6ke" path="res://prefabs/bullet.tscn" id="5_ewfxm"]
@@ -19,6 +18,9 @@ point_count = 8
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ja67l"]
 size = Vector2(20, 70)
+
+[sub_resource type="LabelSettings" id="LabelSettings_q3xm6"]
+font_size = 60
 
 [node name="Node2D" type="Node2D"]
 
@@ -75,23 +77,15 @@ fill_color = Color(0.462745, 0.333333, 0.168627, 1)
 
 [node name="Path2D" type="Path2D" parent="Enemy-path"]
 curve = SubResource("Curve2D_wpfvu")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Enemy-path/Path2D"]
-position = Vector2(192, 167)
-rotation = 0.00558653
-rotates = false
-loop = false
-script = ExtResource("2_r8a5i")
-
-[node name="Enemies" type="Node2D" parent="Enemy-path/Path2D/PathFollow2D"]
 script = ExtResource("3_8jdc4")
 
-[node name="Enemy" parent="Enemy-path/Path2D/PathFollow2D" instance=ExtResource("3_qc7uv")]
+[node name="spawn" parent="Enemy-path/Path2D" instance=ExtResource("2_b3vcl")]
 
-[node name="DamageArea2D" type="Area2D" parent="." node_paths=PackedStringArray("BaseHp_label")]
+[node name="DamageArea2D" type="Area2D" parent="." node_paths=PackedStringArray("BaseHp_label", "Gameover_label")]
 position = Vector2(183, 520)
 script = ExtResource("5_ob5wx")
 BaseHp_label = NodePath("Label")
+Gameover_label = NodePath("Label2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2D"]
 shape = SubResource("RectangleShape2D_ja67l")
@@ -102,6 +96,14 @@ offset_top = -514.0
 offset_right = 940.0
 offset_bottom = -491.0
 text = "HP:100"
+
+[node name="Label2" type="Label" parent="DamageArea2D"]
+offset_left = 177.0
+offset_top = -236.0
+offset_right = 398.0
+offset_bottom = -109.0
+scale = Vector2(1.44, 1)
+label_settings = SubResource("LabelSettings_q3xm6")
 
 [node name="player" type="Node2D" parent="."]
 

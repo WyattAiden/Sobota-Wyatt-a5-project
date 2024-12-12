@@ -1,0 +1,34 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdgrje5a38oaa"]
+
+[ext_resource type="Script" path="res://scripts/PathFollow2d.cs" id="1_a05hs"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="2_ki6p2"]
+[ext_resource type="Script" path="res://scripts/Enemy.cs" id="2_rltrd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_suchf"]
+size = Vector2(64, 64)
+
+[node name="spawn" type="PathFollow2D"]
+position = Vector2(192, 167)
+rotation = 0.00558653
+rotates = false
+loop = false
+script = ExtResource("1_a05hs")
+
+[node name="Enemy" type="Area2D" parent="." node_paths=PackedStringArray("Hp_label")]
+script = ExtResource("2_rltrd")
+Hp_label = NodePath("Label")
+
+[node name="Rectangle" type="Node2D" parent="Enemy"]
+script = ExtResource("2_ki6p2")
+size = Vector2(64.6824, 64.6824)
+fill_color = Color(1, 0, 0.0166664, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+shape = SubResource("RectangleShape2D_suchf")
+
+[node name="Label" type="Label" parent="Enemy"]
+offset_left = -21.0
+offset_top = -56.0
+offset_right = 19.0
+offset_bottom = -33.0
+text = "100"

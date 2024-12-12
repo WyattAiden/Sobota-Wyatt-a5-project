@@ -6,6 +6,7 @@ public partial class DamageArea2d : Area2D
 {
     int BaseHp = 100;
     [Export] Godot.Label BaseHp_label;
+    [Export] Godot.Label Gameover_label;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -18,7 +19,7 @@ public partial class DamageArea2d : Area2D
         BaseHp -= 10;
         if (BaseHp <= 0)
         {
-
+            Gameover_label.Text = $"Game Over";
         }
         body.QueueFree();
     }
