@@ -7,6 +7,7 @@
     <RootNamespace>SobotaWyatta5project</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="process work\" />
     <Folder Include="scenes\" />
   </ItemGroup>
 </Project>
