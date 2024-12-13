@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://c6f1ty5tn67jo"]
 
-[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_hbyiq"]
-[ext_resource type="PackedScene" uid="uid://cdgrje5a38oaa" path="res://prefabs/spawn.tscn" id="2_b3vcl"]
-[ext_resource type="Script" path="res://scripts/Gun.cs" id="2_gcxa7"]
-[ext_resource type="Script" path="res://scripts/Enemies.cs" id="3_8jdc4"]
-[ext_resource type="Script" path="res://scripts/Bullet_spawn.cs" id="4_jkpx4"]
-[ext_resource type="Texture2D" uid="uid://b4a65yj8cd164" path="res://Assets/castle_4.png" id="5_14t5e"]
-[ext_resource type="PackedScene" uid="uid://xj7b4obje6ke" path="res://prefabs/bullet.tscn" id="5_ewfxm"]
-[ext_resource type="Script" path="res://scripts/DamageArea2d.cs" id="5_ob5wx"]
-[ext_resource type="Texture2D" uid="uid://yufdwjjmcov8" path="res://Assets/Zfe0sd.png" id="6_qsxx0"]
+[ext_resource type="Script" path="res://addons/2d_shapes/shapes/Rectangle.gd" id="1_r2ahl"]
+[ext_resource type="Script" path="res://scripts/Enemies.cs" id="2_qmg2f"]
+[ext_resource type="PackedScene" uid="uid://cdgrje5a38oaa" path="res://prefabs/spawn.tscn" id="3_2hcuk"]
+[ext_resource type="Script" path="res://scripts/Gun.cs" id="4_1uk38"]
+[ext_resource type="Script" path="res://scripts/Bullet_spawn.cs" id="5_nmvo1"]
+[ext_resource type="PackedScene" uid="uid://xj7b4obje6ke" path="res://prefabs/bullet.tscn" id="6_urar2"]
+[ext_resource type="Script" path="res://scripts/DamageArea2d.cs" id="7_n7t3s"]
+[ext_resource type="Texture2D" uid="uid://b4a65yj8cd164" path="res://Assets/castle_4.png" id="8_rnd85"]
+[ext_resource type="Texture2D" uid="uid://yufdwjjmcov8" path="res://Assets/Zfe0sd.png" id="9_budr5"]
 
 [sub_resource type="Curve2D" id="Curve2D_wpfvu"]
 _data = {
@@ -27,7 +27,7 @@ font_size = 60
 [node name="Rectangle" type="Node2D" parent="."]
 position = Vector2(575.586, 326.048)
 scale = Vector2(-0.804084, -0.209533)
-script = ExtResource("1_hbyiq")
+script = ExtResource("1_r2ahl")
 size = Vector2(1437.72, 3119.32)
 fill_color = Color(0.0666667, 0.486275, 0.0745098, 1)
 
@@ -35,69 +35,95 @@ fill_color = Color(0.0666667, 0.486275, 0.0745098, 1)
 
 [node name="Rectangle" type="Node2D" parent="Enemy-path"]
 position = Vector2(546.989, 167)
-script = ExtResource("1_hbyiq")
+script = ExtResource("1_r2ahl")
 size = Vector2(778.487, 72.799)
 fill_color = Color(0.462745, 0.333333, 0.168627, 1)
 
 [node name="Rectangle2" type="Node2D" parent="Enemy-path/Rectangle"]
 position = Vector2(361.011, 48.0203)
-script = ExtResource("1_hbyiq")
+script = ExtResource("1_r2ahl")
 size = Vector2(72.799, 169.411)
 fill_color = Color(0.462745, 0.333333, 0.168627, 1)
 
 [node name="Rectangle3" type="Node2D" parent="Enemy-path/Rectangle"]
 position = Vector2(8.01099, 353)
-script = ExtResource("1_hbyiq")
+script = ExtResource("1_r2ahl")
 size = Vector2(778.487, 72.799)
 fill_color = Color(0.462745, 0.333333, 0.168627, 1)
 
 [node name="Rectangle4" type="Node2D" parent="Enemy-path/Rectangle"]
 position = Vector2(361.011, 287)
-script = ExtResource("1_hbyiq")
+script = ExtResource("1_r2ahl")
 size = Vector2(72.799, 169.411)
 fill_color = Color(0.462745, 0.333333, 0.168627, 1)
 
 [node name="Rectangle6" type="Node2D" parent="Enemy-path/Rectangle"]
 position = Vector2(128.011, 170)
-script = ExtResource("1_hbyiq")
+script = ExtResource("1_r2ahl")
 size = Vector2(72.799, 169.411)
 fill_color = Color(0.462745, 0.333333, 0.168627, 1)
 
 [node name="Rectangle" type="Node2D" parent="Enemy-path/Rectangle"]
 position = Vector2(227.011, 238)
-script = ExtResource("1_hbyiq")
+script = ExtResource("1_r2ahl")
 size = Vector2(270, 72.799)
 fill_color = Color(0.462745, 0.333333, 0.168627, 1)
 
 [node name="Rectangle5" type="Node2D" parent="Enemy-path/Rectangle"]
 position = Vector2(227.011, 94)
-script = ExtResource("1_hbyiq")
+script = ExtResource("1_r2ahl")
 size = Vector2(270, 72.799)
 fill_color = Color(0.462745, 0.333333, 0.168627, 1)
 
 [node name="Path2D" type="Path2D" parent="Enemy-path"]
 curve = SubResource("Curve2D_wpfvu")
-script = ExtResource("3_8jdc4")
+script = ExtResource("2_qmg2f")
 
-[node name="spawn" parent="Enemy-path/Path2D" instance=ExtResource("2_b3vcl")]
+[node name="spawn" parent="Enemy-path/Path2D" instance=ExtResource("3_2hcuk")]
+
+[node name="player" type="Node2D" parent="."]
+
+[node name="Rectangle" type="Node2D" parent="player"]
+position = Vector2(493.936, 352.064)
+script = ExtResource("1_r2ahl")
+size = Vector2(64.9184, 64.9184)
+fill_color = Color(0.09, 0.787667, 1, 1)
+
+[node name="Node2D" type="Node2D" parent="player/Rectangle"]
+position = Vector2(0.063812, -0.063812)
+script = ExtResource("4_1uk38")
+
+[node name="Rectangle" type="Node2D" parent="player/Rectangle/Node2D"]
+position = Vector2(24, 0)
+rotation = 1.5708
+script = ExtResource("1_r2ahl")
+size = Vector2(21.1725, 67.3274)
+fill_color = Color(0.18, 0.1386, 0.1386, 1)
+
+[node name="bullet_spawner" type="Node2D" parent="player/Rectangle/Node2D/Rectangle"]
+position = Vector2(-0.000247761, -19.0002)
+rotation = -1.5708
+script = ExtResource("5_nmvo1")
+bullet_scene = ExtResource("6_urar2")
+bullet_speed = 800.0
 
 [node name="DamageArea2D" type="Area2D" parent="." node_paths=PackedStringArray("BaseHp_label", "Gameover_label")]
 position = Vector2(183, 520)
-script = ExtResource("5_ob5wx")
-BaseHp_label = NodePath("Label")
-Gameover_label = NodePath("Label2")
+script = ExtResource("7_n7t3s")
+BaseHp_label = NodePath("Helth")
+Gameover_label = NodePath("loose")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea2D"]
 shape = SubResource("RectangleShape2D_ja67l")
 
-[node name="Label" type="Label" parent="DamageArea2D"]
+[node name="Helth" type="Label" parent="DamageArea2D"]
 offset_left = 886.0
 offset_top = -514.0
 offset_right = 940.0
 offset_bottom = -491.0
 text = "HP:100"
 
-[node name="Label2" type="Label" parent="DamageArea2D"]
+[node name="loose" type="Label" parent="DamageArea2D"]
 offset_left = 177.0
 offset_top = -236.0
 offset_right = 398.0
@@ -105,38 +131,12 @@ offset_bottom = -109.0
 scale = Vector2(1.44, 1)
 label_settings = SubResource("LabelSettings_q3xm6")
 
-[node name="player" type="Node2D" parent="."]
-
-[node name="Rectangle" type="Node2D" parent="player"]
-position = Vector2(493.936, 352.064)
-script = ExtResource("1_hbyiq")
-size = Vector2(64.9184, 64.9184)
-fill_color = Color(0.09, 0.787667, 1, 1)
-
-[node name="Node2D" type="Node2D" parent="player/Rectangle"]
-position = Vector2(0.063812, -0.063812)
-script = ExtResource("2_gcxa7")
-
-[node name="Rectangle" type="Node2D" parent="player/Rectangle/Node2D"]
-position = Vector2(24, 0)
-rotation = 1.5708
-script = ExtResource("1_hbyiq")
-size = Vector2(21.1725, 67.3274)
-fill_color = Color(0.18, 0.1386, 0.1386, 1)
-
-[node name="bullet_spawner" type="Node2D" parent="player/Rectangle/Node2D/Rectangle"]
-position = Vector2(-0.000247761, -19.0002)
-rotation = -1.5708
-script = ExtResource("4_jkpx4")
-bullet_scene = ExtResource("5_ewfxm")
-bullet_speed = 800.0
-
 [node name="Castle4" type="Sprite2D" parent="."]
 position = Vector2(88, 485)
 scale = Vector2(0.348131, 0.348131)
-texture = ExtResource("5_14t5e")
+texture = ExtResource("8_rnd85")
 
 [node name="Zfe0Sd" type="Sprite2D" parent="."]
 position = Vector2(137, 154)
 scale = Vector2(0.768, 0.768)
-texture = ExtResource("6_qsxx0")
+texture = ExtResource("9_budr5")

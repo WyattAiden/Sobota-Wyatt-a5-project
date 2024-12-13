@@ -3,7 +3,6 @@ using System;
 
 public partial class Enemies : Node2D
 {
-	[Export] Label gameover;
     float time = 0.0f;
 	RandomNumberGenerator rng = new RandomNumberGenerator();
 
